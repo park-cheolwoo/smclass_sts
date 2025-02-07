@@ -23,4 +23,13 @@ public class BoardController {
 		model.addAttribute("list",list);		
 		return "board/blist";
 	}
+	
+	
+	@GetMapping("/bview")
+	public String bview(int bno) {
+		System.out.println("bno : "+bno);
+		return("board/bview");
+	}
+	
+	
 }
