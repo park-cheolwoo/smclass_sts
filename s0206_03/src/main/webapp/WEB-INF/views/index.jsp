@@ -1,0 +1,30 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>메인페이지</title>
+	</head>
+	<body>
+		<h2>메인페이지</h2>
+		<h4>session : ${session_id }</h4>
+		<ul>
+			<c:if test="${session_id == null }">
+			<li><a href="stuInput">학생성적입력</a></li>
+			<li><a href="login">로그인</a></li>
+			<li><a href="member">회원가입</a></li>
+			<li><a href="board?bno=1&btitle=이벤트안내">게시판</a></li>			
+			<li><a href="/data?bno=10">data전달-parameter</a></li>			
+			<li><a href="/data2/100">data전달2-path</a></li>			
+			<li><a href="/data3/1,2,3">data전달3-path</a></li>			
+			<li><a href="/data4">data전달4-객체</a></li>			
+			</c:if>
+			<c:if test="${session_id != null }">
+			<li><a href="logout">로그아웃</a></li>			
+			<li><a href="memInfo">회원정보</a></li>
+			</c:if>			
+		</ul>
+	</body>
+</html>
