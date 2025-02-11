@@ -1,17 +1,26 @@
 package com.java.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.java.dto.BoardDto;
 
 public interface BoardService {
 
-	ArrayList<BoardDto> blist();
+	Map<String, Object> blist(int page, String category, String searchW);
 
 	void bwrite(BoardDto bdto);
 
-	BoardDto bview(int bno);
+	Map<String, Object> bview(int bno);
 
 	void bdelete(int bno);
+
+	BoardDto bupdate(int bno);
+
+	void bupdate(BoardDto bdto);
+
+	BoardDto breply(int bno);
+
+	void breply(BoardDto bdto);
 
 }

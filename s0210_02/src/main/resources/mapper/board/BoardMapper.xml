@@ -5,12 +5,64 @@
 <mapper namespace="com.java.dao.BoardMapper">
   <!-- 로그인 -->
   <select id="selectAll" resultType="com.java.dto.BoardDto">
-      select * from board order by bno desc
+  
+      select * from(select row_number() over(
+      order by bgroup desc,bstep asc) rnum,
+      a.* from board a  
+      <if test="category == 'btitle' or category == 'bcontent'">
+      	where ${category} like '%'|| #{searchW}||'%'
+      </if>
+      <if test="category == 'all'">
+      	where btitle like '%'|| #{searchW}||'%' or bcontent like '%' || #{searchW} || '%'
+      </if>
+      
+      <!-- $() : 문구('btitle/bcontent') , #{} : 데이터값 -->
+       ) 
+       where rnum between #{startrow} and #{endrow}
+       
   </select>
+  
+  <select id="countAll" resultType="int">
+  	select count(*) from board
+  	<if test="category == 'btitle' or category == 'bcontent'">
+      where ${category} like '%'|| #{searchW}||'%'
+    </if>
+    <if test="category == 'all'">
+      where btitle like '%'|| #{searchW}||'%' or bcontent like '%' || #{searchW} || '%'
+    </if>
+  </select>
+  
   
   <select id="selectOne" resultType="com.java.dto.BoardDto">
       select * from board where bno=#{bno}
   </select>
+  
+  <select id="selectOnePrev" resultType="com.java.dto.BoardDto">
+  	<!-- 1. board 테이블에서 bno = (이전 게시글 번호) 인 것을 가져와라 -->
+     select * from board where bno =(
+    <!-- 2. (이전 게시글 번호)는 어떻게 구할 것인가? --> 
+	 select prev_bno from
+	<!-- 3. 가상의 테이블(bno, 이전 게시글 번호) 에서 bno=bno 인 (이전 게시글 번호)를 가져와라-->
+	 (select bno,lead(bno,1,-1) over(order by bgroup desc,bstep asc) as prev_bno from board) b
+	 where bno=#{bno})
+	<!-- 4. (이전 게시글 번호)를 가져와서 1번에 대입해라 -->
+  </select>
+  
+  <select id="selectOneNext" resultType="com.java.dto.BoardDto">
+  	<!-- 1. board 테이블(실제 테이블)에서 bno= (다음 게시글 번호) 인 것을 가져와라  -->
+     select * from board where bno =(
+    <!-- 2. (다음 게시글 번호)는 어떻게 구할 것인가? --> 
+	 select next_bno from
+	 (select bno,lag(bno,1,-1) over(order by bgroup desc,bstep asc) as next_bno from board) b
+	 where bno=#{bno})
+  </select>
+  
+  
+  
+  
+  
+  
+  
   
   <update id="updateBHit">
       update board set bhit=bhit+1 where bno=#{bno}
@@ -20,7 +72,22 @@
       insert into board values(board_seq.nextval,#{btitle},#{bcontent},#{id},board_seq.currval,0,0,0,sysdate)
   </insert>
   
+  <insert id="insertBreply">
+      insert into board values(board_seq.nextval,#{btitle},#{bcontent},#{id},#{bgroup},#{bstep}+1,#{bindent}+1,0,sysdate)
+  </insert>
+  
   <delete id="deleteBoard">
   	delete from board where bno=#{bno}
   </delete>
+  
+  <update id="updateBoard">
+      update board set btitle=#{btitle}, bcontent=#{bcontent} where bno=#{bno}
+  </update>
+  
+  <!-- 자식 게시글 bstep 1 증가 -->
+  <update id="bstepUp">
+      update board set bstep=bstep+1 where bgroup=#{bgroup} and bstep > #{bstep}
+  </update>
+  
+  
 </mapper>

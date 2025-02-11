@@ -15,7 +15,7 @@
   	const deleteBtn = (bno) => {
   		if(confirm(bno+"번 게시글을 삭제하시겠습니까?")){
   			alert("게시글이 삭제되었습니다.");
-  			location.href="/board/bdelete?bno=${boardDto.bno}";
+  			location.href="/board/bdelete?bno=${boardDto.bno}&page=${page}";
   		}
   	}
   </script>
@@ -35,28 +35,46 @@
         <th colspan="3">제목</th>
       </tr>
       <tr>
-        <td colspan="3"><strong>${boardDto.btitle }</strong></td>
+        <td colspan="3"><strong>${bDto.btitle }</strong></td>
       </tr>
       <tr>
-        <td>${boardDto.id }</td>
+        <td>${bDto.id }</td>
         <td>조회수</td>
-        <td>${boardDto.bhit }</td>
+        <td>${bDto.bhit }</td>
       </tr>
       <tr>
-        <td colspan="3" class="article">${boardDto.bcontent }</td>
+        <td colspan="3" class="article">${bDto.bcontent }</td>
       </tr>
       <tr>
-        <td colspan="3"><strong>다음글</strong> <span class="separator">|</span> [키즈잼] 2월 프로그램 안내</td>
+        <td colspan="3"><strong>다음글</strong> <span class="separator">|</span>
+        <c:if test="${nDto != null}">
+        <a href="/board/bview?bno=${nDto.bno }">
+        ${nDto.btitle }
+        </a>
+        </c:if>
+        <c:if test="${nDto == null}">
+        다음 게시글이 없습니다.
+        </c:if>
+        </td>
       </tr>
       <tr>
-        <td colspan="3"><strong>이전글</strong> <span class="separator">|</span> [키즈잼] 2020년 1분기 정기 휴관일 안내</td>
+        <td colspan="3"><strong>이전글</strong> <span class="separator">|</span>
+        <c:if test="${pDto != null}">
+        <a href="/board/bview?bno=${pDto.bno }">
+        ${pDto.btitle }
+        </a>
+        </c:if>
+        <c:if test="${pDto == null}">
+        이전 게시글이 없습니다.
+        </c:if>
+         </td>
       </tr>
     </table>
 
-    <a href="/board/blist"><div class="list">목록</div></a>
-    <a onclick="deleteBtn(${boardDto.bno})" }"><div class="list">삭제</div></a>
-    <a href=""><div class="list">수정</div></a>
-    <a href=""><div class="list">답변달기</div></a>
+    <a href="/board/blist?page=${page }"><div class="list">목록</div></a>
+    <a onclick="deleteBtn(${bDto.bno})" }"><div class="list">삭제</div></a>
+    <a href="/board/bupdate?bno=${bDto.bno}&page=${page}"><div class="list">수정</div></a>
+    <a href="/board/breply?bno=${bDto.bno}&page=${page}"><div class="list">답변달기</div></a>
   </section>
 </body>
 </html>

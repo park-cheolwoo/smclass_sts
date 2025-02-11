@@ -9,7 +9,7 @@ import com.java.dto.BoardDto;
 @Mapper
 public interface BoardMapper {
 
-	ArrayList<BoardDto> selectAll();
+	ArrayList<BoardDto> selectAll(int startrow, int endrow, String category, String searchW);
 
 	void insertBoard(BoardDto bdto);
 
@@ -18,5 +18,17 @@ public interface BoardMapper {
 	void updateBHit(int bno);
 
 	void deleteBoard(int bno);
+
+	void updateBoard(BoardDto bdto);
+
+	void bstepUp(BoardDto bdto);
+
+	void insertBreply(BoardDto bdto);
+
+	BoardDto selectOnePrev(int bno);
+
+	BoardDto selectOneNext(int bno);
+
+	int countAll(String category, String searchW);
 
 }

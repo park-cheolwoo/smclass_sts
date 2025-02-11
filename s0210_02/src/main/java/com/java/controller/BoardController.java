@@ -1,6 +1,7 @@
 package com.java.controller;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,9 +19,19 @@ public class BoardController {
 	@Autowired BoardService boardService;
 	
 	@GetMapping("/board/blist")
-	public String blist(Model model) {
-		ArrayList<BoardDto> list = boardService.blist();
-		model.addAttribute("list",list);
+	public String blist(@RequestParam (value="page",defaultValue="1") int page, String category, String searchW, Model model) {
+		System.out.println("category : "+category);
+		System.out.println("searchW : "+searchW);
+		
+		
+		Map<String, Object> map = boardService.blist(page,category, searchW);
+		model.addAttribute("page",map.get("page"));
+		model.addAttribute("maxpage",map.get("maxpage"));
+		model.addAttribute("startpage",map.get("startpage"));
+		model.addAttribute("endpage",map.get("endpage"));
+		model.addAttribute("list",map.get("list"));
+		model.addAttribute("searchW",map.get("searchW"));
+		model.addAttribute("category",map.get("category"));
 		return "blist";
 	}
 	
@@ -36,23 +47,55 @@ public class BoardController {
 	}
 	
 	@GetMapping("/board/bview") 
-	public String bview(@RequestParam(defaultValue="1") int bno, Model model) {
-		BoardDto boardDto = boardService.bview(bno);
-		model.addAttribute("boardDto",boardDto);
+	public String bview(@RequestParam(defaultValue="1") int bno, int page, Model model) {
+		Map<String, Object> map = boardService.bview(bno);
+		model.addAttribute("bDto",map.get("boardDto"));
+		model.addAttribute("pDto",map.get("prevDto"));
+		model.addAttribute("nDto",map.get("nextDto"));
+		model.addAttribute("page",page);
 		return "bview";
 	}
 	
 	@GetMapping("/board/bdelete") 
-	public String bdelete(@RequestParam(defaultValue="1") int bno, Model model) {
+	public String bdelete(int bno, int page, Model model) {
 		boardService.bdelete(bno);
-		return "redirect:/board/blist";
+		return "redirect:/board/blist?page="+page;
+	}
+	
+	@GetMapping("/board/bupdate") 
+	public String bupdate(int bno, int page, Model model) {
+		BoardDto boardDto = boardService.bupdate(bno);
+//		boardService.bdelete(bno);
+		model.addAttribute("bDto",boardDto);
+		model.addAttribute("page",page);
+		return "bupdate";
 	}
 	
 	
+	@PostMapping("/board/bupdate")
+	public String bupdate(BoardDto bdto, int page, Model model) {
+		model.addAttribute("page",page);
+		boardService.bupdate(bdto);
+		return "redirect:/board/blist?page="+page;
+	}
 	
 	
+	@GetMapping("/board/breply") 
+	public String breply(int bno, int page, Model model) {
+		BoardDto boardDto = boardService.breply(bno);
+		model.addAttribute("bdto",boardDto);
+		model.addAttribute("page",page);
+		return "breply?page="+page;
+	}
 	
+	@PostMapping("/board/breply")
+	public String breply(BoardDto bdto, int page, Model model) {
+		boardService.breply(bdto);
+		model.addAttribute("page",page);
+		return "redirect:/board/blist?page="+page;
+	}
 	
+
 	
 	
 	
