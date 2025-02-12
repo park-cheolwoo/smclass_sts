@@ -5,6 +5,8 @@
 <mapper namespace="com.java.dao.BoardMapper">
   <!-- dao Interface 파일 위치 -->
   <select id="blist" resultType="com.java.dto.BoardDto">
-      select * from board
+      select * from board order by bgroup desc, bstep asc
   </select>
+  <insert
+  
 </mapper>

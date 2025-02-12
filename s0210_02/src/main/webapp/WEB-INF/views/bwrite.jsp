@@ -8,8 +8,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>글쓰기</title>
   <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:400,500,700,900&display=swap&subset=korean" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
-  <link rel="stylesheet" href="css/write.css">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/css/write.css">
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
   <script>
   	const wbtn = () => {
@@ -21,14 +21,26 @@
   		alert("게시글을 저장합니다.");
   		writeFrm.submit();
   	}
-  </script>
+  	
+  	function readUrl(input){
+ 	   if(input.files && input.files[0]){
+ 		   var reader = new FileReader();
+ 		   reader.onload = function(e){
+ 			   document.getElementById("preview").src = e.target.result;
+ 		   };
+ 		   reader.readAsDataURL(input.files[0]);
+ 	   	}else{
+ 	   		document.getElementById("preview").src = "";
+ 	   }
+    }
+   </script>
 </head>
 <body>
 <section>
     <h1>관리자 글쓰기</h1>
     <hr>
 
-    <form action="/board/bwrite" name="writeFrm" method="post">
+    <form action="/board/bwrite" name="writeFrm" method="post" enctype="multipart/form-data">
       <table>
         <colgroup>
           <col width="15%">
@@ -55,7 +67,14 @@
         <tr>
           <th>이미지 표시</th>
           <td>
-            <input type="file" name="file" id="file">
+            <input type="file" name="files" id="file" onchange="readUrl(this)">
+          </td>
+        </tr>
+
+        <tr>
+          <th>이미지 보기</th>
+          <td>
+            <img id="preview" style="width:100px" />
           </td>
         </tr>
       </table>
