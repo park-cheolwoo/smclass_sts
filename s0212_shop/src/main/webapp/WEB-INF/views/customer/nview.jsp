@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
@@ -222,16 +222,18 @@ $(document).ready(function() {
 								</ul>
 							</div>
 							<div class="day">
-								<p class="txt">작성일<span><fmt:formatDate value="${bdto.bdate }" pattern="yyyy-MM-dd"/></span></p>
+								<p class="txt">작성일<span>
+								<fmt:formatDate value="${bdto.bdate}" pattern="yyyy-MM-dd"/>
+								</span></p>
 							</div>
 						</div>
 
 						<div class="viewContents">
 							${bdto.bcontent }
 						</div>
-						<c:if test="${bdto.bfile != null }">
-							<div class="viewContents">
-								<img src="/upload/board/${bdto.bfile }" width="50%" />
+						<c:if test="${bdto.bfile !=null }">
+							<div>
+								<img src="/upload/board/${bdto.bfile}" width="50%"/>
 							</div>
 						</c:if>
 					</div>
@@ -248,7 +250,7 @@ $(document).ready(function() {
 							<tbody>
 								<tr>
 									<th class="pre">PREV</th>
-									<td><a href="#">${pdto.btitle }</a></td>
+									<td><a href="#">상품 재입고는 언제 되나요?</a></td>
 								</tr>
 
 								<tr>

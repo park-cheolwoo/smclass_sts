@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CboardDto {
+public class MemberDto {
 
-	private int cno;
-	private int eno;
 	private String id;
-	private String cpw;
-	private String ccontent;
-	private Timestamp cdate;
-	
+	private String pw;
+	private String name;
+	private String phone;
+	private String gender;
+	private String hobby;
+	private Timestamp mdate;
 }

@@ -22,17 +22,23 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	@Override
-	public Map<String, Object> nview(int bno) {
-		Map<String, Object> map = new HashMap();
+	public BoardDto nview(int bno) {
+		//
+		Map<String, Object> map = new HashMap<>();
+		//조회수 1 증가 - update
+		customerMapper.updateBhit(bno);
+		//현재게시글 정보
 		BoardDto boardDto = customerMapper.selectOne(bno);
-		BoardDto prevDto = customerMapper.prevSelect(bno);
+		//이전게시글 정보
+		BoardDto prevDto = customerMapper.selectOnePrev(bno);
+		//다음게시글 정보
+		BoardDto nextDto = customerMapper.selectOneNext(bno);
+		
 		map.put("boardDto", boardDto);
 		map.put("prevDto", prevDto);
+		map.put("nextDto", nextDto);
 		
-//		BoardDto boardDto = customerMapper.selectOne(bno);
-		return map;
+		return boardDto;
 	}
-
-
 
 }

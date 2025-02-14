@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,6 +94,17 @@ $(document).ready(function() {
 
 
 });
+
+
+//로그인 여부
+if("${param.loginChk}"=="1"){
+	alert("로그인이 되었습니다.");
+}
+//로그아웃 여부
+if("${param.loginChk}"=="0"){
+	alert("로그아웃 되었습니다.");
+}
+
 </script>
 </head>
 <body>
@@ -159,15 +171,21 @@ $(document).ready(function() {
 				<div id="mnaviOpen"><img src="../images/btn/btn_mnavi.gif" width="33" height="31" alt="메뉴열기" /></div>
 				<div id="mnaviClose"><img src="../images/btn/btn_mnavi_close.gif" width="44" height="43" alt="메뉴닫기" /></div>
 				<ul>
-					<li><a href="/event/event">EVENT</a></li>
+					<li><a href="event/event">EVENT</a></li>
 					<li><a href="/customer/notice">CUSTOMER</a></li>
 					<li><a href="#">COMMUNITY</a></li>
 				</ul>
 			</div>
 			<div id="snb">
 				<ul>
-					<li><a href="#">LOGIN</a></li>
-					<li><a href="#">JOIN</a></li>
+					<c:if test="${session_id == null }">
+						<li><a href="/member/login">LOGIN</a></li>
+						<li><a href="/member/join">JOIN</a></li>
+					</c:if>
+					<c:if test="${session_id != null }">
+						<li>${session_id} 님</li>
+						<li><a href="/member/logout">LOGOUT</a></li>
+					</c:if>
 					<li><a href="#">MY PAGE</a></li>
 					<li><a href="#">CART</a></li>
 				</ul>

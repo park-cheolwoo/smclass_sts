@@ -2,6 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,16 +24,23 @@
 <script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="../js/idangerous.swiper-2.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery.anchor.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="../js/html5.js"></script>
 <script type="text/javascript" src="../js/respond.min.js"></script>
 <![endif]-->
+
 <script type="text/javascript">
-$(document).ready(function() {
-	
-
-
+$(function() {
+	$(".sbtn").click(function(){
+		  loginFrm.submit();
+	  })
 });
+
+//로그인 여부
+if("${loginChk}"=="0"){
+	alert("아이디 또는 패스워드가 일치하지 않습니다. 다시 로그인해주세요.");
+}
 </script>
 </head>
 <body>
@@ -192,122 +201,71 @@ $(document).ready(function() {
 		<div id="location">
 			<ol>
 				<li><a href="#">HOME</a></li>
-				<li><a href="#">CUSTOMER</a></li>
-				<li class="last">NOTICE</li>
+				<li><a href="#">MEMBERSHIP</a></li>
+				<li class="last">로그인</li>
 			</ol>
 		</div>
 		
 		<div id="outbox">		
 			<div id="left">
-				<div id="title2">CUSTOMER<span>고객센터</span></div>
+				<div id="title2">MEMBERSHIP<span>멤버쉽</span></div>
 				<ul>	
-					<li><a href="#" id="leftNavi1">NOTICE</a></li>
-					<li><a href="#" id="leftNavi2">1:1문의</a></li>
-					<li><a href="#" id="leftNavi3">FAQ</span></a></li>
-					<li class="last"><a href="#" id="leftNavi4">이용안내</a></li>
+					<li><a href="#" id="leftNavi1">로그인</a></li>
+					<li><a href="#" id="leftNavi2">회원가입</a></li>
+					<li><a href="#" id="leftNavi3">아이디/<span>비밀번호 찾기</span></a></li>
+					<li><a href="#" id="leftNavi4">회원약관</a></li>
+					<li><a href="#" id="leftNavi5">개인정보<span>취급방침</span></a></li>
+					<li class="last"><a href="#" id="leftNavi6">이메일무단<span>수집거부</span></a></li>
 				</ul>			
 			</div><script type="text/javascript">initSubmenu(1,0);</script>
-
+			
 
 			<!-- contents -->
 			<div id="contents">
-				<div id="customer">
-					<h2><strong>NOTICE</strong><span>쟈뎅샵 소식을 전해드립니다.</span></h2>
-					
-					<div class="orderDivMt">
-						<table summary="NO, 제목, 등록일, 조회수 순으로 공지사항을 조회 하실수 있습니다." class="orderTable2" border="1" cellspacing="0">
-							<caption>공지사항 보기</caption>
-							<colgroup>
-							<col width="10%" class="tnone" />
-							<col width="*" />
-							<col width="14%" class="tw25" />
-							<col width="14%" class="tnone" />
-							</colgroup>
-							<thead>
-								<th scope="col" class="tnone">NO.</th>
-								<th scope="col">제목</th>
-								<th scope="col">등록일</th>
-								<th scope="col" class="tnone">조회수</th>
-							</thead>
-							<tbody>
-							    <c:forEach items="${list}" var="ct">
-							    <!-- 게시글날짜 -->
-							    <fmt:formatDate var="day" value="${ct.bdate}" pattern="yyyy-MM-dd"/>
-								<c:if test="${day == today}">
-									<tr>
-										<td class="tnone">${ct.bno}</td>
-										<td class="left">
-											<a href="/customer/nview?bno=${ct.bno}">
-											${ct.btitle}
-											</a>
-							    
-											<img src="../images/ico/ico_new.gif" alt="NEW" />
-										</td>
-										<td>
-										<fmt:formatDate value="${ct.bdate}" pattern="yyyy-MM-dd"/>
-										</td>
-										<td class="tnone right">${ct.bhit }</td>
-									</tr>
-							    </c:if>	
-								<c:if test="${day != today}">
-									<tr>
-										<td class="tnone">${ct.bno}</td>
-										<td class="left">
-											<a href="/customer/nview?bno=${ct.bno}" class="lightgray">
-											${ct.btitle}
-											</a>
-										</td>
-										<td>
-										<fmt:formatDate value="${ct.bdate}" pattern="yyyy-MM-dd"/>
-										</td>
-										<td class="tnone right">${ct.bhit }</td>
-									</tr>
-								
-								</c:if>	
-							    </c:forEach>
-							</tbody>
-						</table>
-					</div>
-						
-
-
-					<div class="btnAreaList">
-						<!-- 페이징이동1 -->
-						<div class="allPageMoving1">
-
-						<a href="#" class="n"><img src="../images/btn/btn_pre2.gif" alt="처음으로"/></a><a href="#" class="pre"><img src="../images/btn/btn_pre1.gif" alt="앞페이지로"/></a>
-						<strong>1</strong>
-						<a href="#">2</a>
-						<a href="#">3</a>
-						<a href="#">4</a>
-						<a href="#">5</a>
-						<a href="#" class="next"><img src="../images/btn/btn_next1.gif" alt="뒤페이지로"/></a><a href="#" class="n"><img src="../images/btn/btn_next2.gif" alt="마지막페이지로"/></a>
-
-						</div>
-						<!-- //페이징이동1 -->
-					</div>
-
-					<div class="searchWrap">
-						<div class="search">
+				<div id="member">
+					<h2><strong>로그인</strong><span>로그인 후 주문하시면 다양한 혜택을 받으실 수 있습니다.</span></h2>
+					<h3>회원 로그인</h3>
+					<div class="informbox">
+						<div class="inform">
+							<form action="/member/login" name="loginFrm" method="post">
 							<ul>
-								<li class="web"><img src="../images/txt/txt_search.gif" alt="search" /></li>
-								<li class="se">
-									<select>
-										<option value="" />제목</option>
-									</select>
-								</li>
-								<li><input type="text" class="searchInput" /></li>
-								<li class="web"><a href="#"><img src="../images/btn/btn_search.gif" alt="검색" /></a></li>
-								<li class="mobile"><a href="#"><img src="../images/btn/btn_search_m.gif" alt="검색" /></a></li>
+								<li><input type="text" name="id" class="loginType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='loginType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
+								<li><input type="password" name="pw" class="passType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='passType'}else {this.className='mfocusnot'}" style="ime-mode:inactive;" /></li>
 							</ul>
+
+							<div class="btn"><a class="sbtn">로그인</a></div>
+							<div class="chk"><input type="checkbox" id="idsave"/><label for="idsave">아이디 저장</label></div>							
+							</form>
+
+							<div class="point">
+								<p>아이디와 비밀번호를 잊으셨나요?</p>
+								<a href="#" class="nbtn">아이디/비밀번호 찾기</a>
+							</div>
 						</div>
 					</div>
-					<!-- //포토 구매후기 -->
 
+
+
+					<h3>비회원 주문 조회</h3>
+					<div class="informbox">
+						<div class="inform">
+							<ul>
+								<li><input type="text" class="ordererType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='ordererType'}else {this.className='mfocusnot'}" /></li>
+								<li><input type="text" class="ordernumType" onfocus="this.className='mfocus'" onblur="if (this.value.length==0) {this.className='ordernumType'}else {this.className='mfocusnot'}" /></li>
+							</ul>
+
+							<div class="btn"><a href="#" class="gbtn">조회하기</a></div>
+							<div class="point">
+								<p>아직 JARDIN 회원이 아니신가요? <span>회원가입하시고 다양한 혜택을 받으세요.</span></p>
+								<a href="#" class="nbtn">회원가입</a>
+							</div>
+						</div>
+					</div>
 
 				</div>
 			</div>
 			<!-- //contents -->
+
 
 		</div>
 	</div>

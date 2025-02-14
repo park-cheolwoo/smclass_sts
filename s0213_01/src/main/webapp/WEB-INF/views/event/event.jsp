@@ -219,7 +219,7 @@ $(document).ready(function() {
 							<c:forEach items="${elist }" var="edto">
 							<li>
 								<div class="img">
-									<a href="event/eview?eno=${edto.eno }"><img src="c:/upload/board/${edto.efile }" alt="진행중 이벤트" /></a>
+									<a href="event/eview?eno=${edto.eno }"><img src="/upload/board/${edto.efile}" alt="진행중 이벤트" /></a>
 								</div>
 								<div class="txt">
 									<div class="subject">${edto.etitle }</div>
