@@ -1,3 +1,7 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +14,7 @@
 <link rel="stylesheet" type="text/css" href="../css/reset.css?v=Y" />
 <link rel="stylesheet" type="text/css" href="../css/layout.css?v=Y" />
 <link rel="stylesheet" type="text/css" href="../css/content.css?v=Y" />
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/top_navi.js"></script>
 <script type="text/javascript" src="../js/left_navi.js"></script>
@@ -215,165 +220,110 @@ $(document).ready(function() {
 							<li class="last"><a href="#">상품평</a></li>
 						</ul>						
 					</div>
+
+					<div class="viewDivTab">
+						<div class="viewHead">
+							<div class="subject">
+								<ul>
+									<li class="cate">[먹어봤어요]</li>
+									<li>&nbsp;쟈뎅, 테이크아웃 카페모리 구매후기</li>
+								</ul>
+							</div>
+							<div class="day">
+								<p class="txt">제품명<span>쟈뎅, 테이크아웃 ‘카페모리’ </span></p>
+							</div>
+							<div class="data">
+								<ul>
+									<li>작성자<span>wldkjf****</span></li>
+									<li class="tnone">등록일<span>2014-03-24</span></li>
+									<li class="tnone">조회수<span>2146</span></li>
+									<li class="last">평점
+										<span>
+											<img src="../images/ico/ico_star.gif" alt="별점" />
+											<img src="../images/ico/ico_star.gif" alt="별점" />
+											<img src="../images/ico/ico_star.gif" alt="별점" />
+											<img src="../images/ico/ico_star.gif" alt="별점" />
+											<img src="../images/ico/ico_star.gif" alt="별점" />
+										</span>
+									</li>
+								</ul>
+							</div>
+						</div>
+
+						<div class="viewContents">
+							물을 많이 많이 마셔야 하는 계절입니다.<br/>
+							물도 많이 마셔야 하고 커피도 땡기고 이럴 때 워터커피가 너무 좋아요.<br/>
+							그냥 물은 안넘어가는데 워터커피 덕분엔 시원하고 촉촉한 여름을 보내고 있답니다.
+						</div>
+					</div>
+
+					<!-- 답변 -->
+					<div class="answer">
+						<div class="inbox">
+							<div class="aname">
+								<p>담당자 <span>[2014-03-04&nbsp;&nbsp;15:01:59]</span></p>
+							</div>
+
+							<div class="atxt">
+								쟈뎅 커피를 사랑해주셔서 감사합니다. 앞으로도 노력하는 쟈뎅이 되겠습니다. 감사합니다.
+								쟈뎅 커피를 사랑해주셔서 감사합니다. 앞으로도 노력하는 쟈뎅이 되겠습니다. 감사합니다.
+								쟈뎅 커피를 사랑해주셔서 감사합니다. 앞으로도 노력하는 쟈뎅이 되겠습니다. 감사합니다.
+								쟈뎅 커피를 사랑해주셔서 감사합니다. 앞으로도 노력하는 쟈뎅이 되겠습니다. 감사합니다.
+								쟈뎅 커피를 사랑해주셔서 감사합니다. 앞으로도 노력하는 쟈뎅이 되겠습니다. 감사합니다.
+								쟈뎅 커피를 사랑해주셔서 감사합니다. 앞으로도 노력하는 쟈뎅이 되겠습니다. 감사합니다.
+								쟈뎅 커피를 사랑해주셔서 감사합니다. 앞으로도 노력하는 쟈뎅이 되겠습니다. 감사합니다.
+								쟈뎅 커피를 사랑해주셔서 감사합니다. 앞으로도 노력하는 쟈뎅이 되겠습니다. 감사합니다.
+								쟈뎅 커피를 사랑해주셔서 감사합니다. 앞으로도 노력하는 쟈뎅이 되겠습니다. 감사합니다.
+								쟈뎅 커피를 사랑해주셔서 감사합니다. 앞으로도 노력하는 쟈뎅이 되겠습니다. 감사합니다.
+							</div>
+						</div>
+					</div>
+					<!-- //답변 -->
+
+
+					<!-- 이전다음글 -->
+					<div class="pnDiv web">
+						<table summary="이전다음글을 선택하여 보실 수 있습니다." class="preNext" border="1" cellspacing="0">
+							<caption>이전다음글</caption>
+							<colgroup>
+							<col width="100px" />
+							<col width="*" />
+							<col width="100px" />
+							</colgroup>
+							<tbody>
+								<tr>
+									<th class="pre">PREV</th>
+									<td><a href="#">상품 재입고는 언제 되나요?</a></td>
+									<td>&nbsp;</td>
+								</tr>
+
+								<tr>
+									<th class="next">NEXT</th>
+									<td>다음 글이 없습니다.</td>
+									<td>&nbsp;</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<!-- //이전다음글 -->
+
+
+					<!-- Btn Area -->
+					<div class="btnArea">
+						<div class="bRight">
+							<ul>
+								<li><a href="#" class="nbtnbig mw">수정</a></li>
+								<li><a href="#" class="nbtnbig mw">삭제</a></li>
+								<li><a href="#" class="sbtnMini mw">목록</a></li>
+							</ul>
+						</div>
+					</div>
+					<!-- //Btn Area -->
 					
-
-					<!-- 포토 구매후기 -->
-					<div class="imgListType">
-						<ul>
-
-							<!-- List -->
-							<li>
-								<div class="img"><img src="../images/img/sample_epil.jpg" width="155" height="160" alt="" /></div>
-								<div class="txt">
-									<div class="subject">
-										<a href="#"><span class="orange">[먹어봤어요]</span> 쟈뎅, 테이크아웃 카페모리 구매후기</a>
-									</div>
-									<div class="conf">
-										소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.....
-									</div>
-									<div class="data">
-										<p>작성자 <span>dlsif***</span></p>
-										<p>등록일 <span>2014-03-24</span></p>
-										<p>조회수 <span>325</span></p>
-										<p>평점 
-											<span class="ty">
-												<img src="../images/ico/ico_star.gif" alt="별점" />
-												<img src="../images/ico/ico_star.gif" alt="별점" />
-												<img src="../images/ico/ico_star.gif" alt="별점" />
-												<img src="../images/ico/ico_star.gif" alt="별점" />
-												<img src="../images/ico/ico_star.gif" alt="별점" />
-											</span>
-										</p>
-									</div>
-								</div>
-							</li>
-							<!-- //List -->
-
-							<li>
-								<div class="img"><img src="../images/img/sample_epil.jpg" width="155" height="160" alt="" /></div>
-								<div class="txt">
-									<div class="subject">
-										<a href="#"><span class="orange">[먹어봤어요]</span> 쟈뎅, 테이크아웃 카페모리 구매후기</a>
-									</div>
-									<div class="conf">
-										소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.....
-									</div>
-									<div class="data">
-										<p>작성자 <span>dlsif***</span></p>
-										<p>등록일 <span>2014-03-24</span></p>
-										<p>조회수 <span>325</span></p>
-										<p>평점 
-											<span>
-												<img src="../images/ico/ico_star.gif" alt="별점" />
-												<img src="../images/ico/ico_star.gif" alt="별점" />
-												<img src="../images/ico/ico_star.gif" alt="별점" />
-												<img src="../images/ico/ico_star.gif" alt="별점" />
-												<img src="../images/ico/ico_star.gif" alt="별점" />
-											</span>
-										</p>
-									</div>
-								</div>
-							</li>
-
-							<li>
-								<div class="img"><img src="../images/img/sample_epil.jpg" width="155" height="160" alt="" /></div>
-								<div class="txt">
-									<div class="subject">
-										<a href="#"><span class="orange">[먹어봤어요]</span> 쟈뎅, 테이크아웃 카페모리 구매후기</a>
-									</div>
-									<div class="conf">
-										소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.....
-									</div>
-									<div class="data">
-										<p>작성자 <span>dlsif***</span></p>
-										<p>등록일 <span>2014-03-24</span></p>
-										<p>조회수 <span>325</span></p>
-										<p>평점 
-											<span>
-												<img src="../images/ico/ico_star.gif" alt="별점" />
-												<img src="../images/ico/ico_star.gif" alt="별점" />
-												<img src="../images/ico/ico_star.gif" alt="별점" />
-												<img src="../images/ico/ico_star.gif" alt="별점" />
-												<img src="../images/ico/ico_star.gif" alt="별점" />
-											</span>
-										</p>
-									</div>
-								</div>
-							</li>
-
-							<li>
-								<div class="img"><img src="../images/img/sample_epil.jpg" width="155" height="160" alt="" /></div>
-								<div class="txt">
-									<div class="subject">
-										<a href="#"><span class="orange">[먹어봤어요]</span> 쟈뎅, 테이크아웃 카페모리 구매후기</a>
-									</div>
-									<div class="conf">
-										소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.소문만큼 맛있었습니다.....
-									</div>
-									<div class="data">
-										<p>작성자 <span>dlsif***</span></p>
-										<p>등록일 <span>2014-03-24</span></p>
-										<p>조회수 <span>325</span></p>
-										<p>평점 
-											<span>
-												<img src="../images/ico/ico_star.gif" alt="별점" />
-												<img src="../images/ico/ico_star.gif" alt="별점" />
-												<img src="../images/ico/ico_star.gif" alt="별점" />
-												<img src="../images/ico/ico_star.gif" alt="별점" />
-												<img src="../images/ico/ico_star.gif" alt="별점" />
-											</span>
-										</p>
-									</div>
-								</div>
-							</li>
-
-						</ul>
-					</div>
-
-
-					<div class="btnAreaList">
-						<div class="bwright">
-							<ul>
-								<li><a href="#" class="sbtnMini">글쓰기</a></li>
-							</ul>
-						</div>
-
-						<!-- 페이징이동1 -->
-						<div class="allPageMoving1">
-
-						<a href="#" class="n"><img src="../images/btn/btn_pre2.gif" alt="처음으로"/></a><a href="#" class="pre"><img src="../images/btn/btn_pre1.gif" alt="앞페이지로"/></a>
-						<strong>1</strong>
-						<a href="#">2</a>
-						<a href="#">3</a>
-						<a href="#">4</a>
-						<a href="#">5</a>
-						<a href="#" class="next"><img src="../images/btn/btn_next1.gif" alt="뒤페이지로"/></a><a href="#" class="n"><img src="../images/btn/btn_next2.gif" alt="마지막페이지로"/></a>
-
-						</div>
-						<!-- //페이징이동1 -->
-					</div>
-
-					<div class="searchWrap">
-						<div class="search">
-							<ul>
-								<li class="web"><img src="../images/txt/txt_search.gif" alt="search" /></li>
-								<li class="se">
-									<select>
-										<option value="" />제목</option>
-									</select>
-								</li>
-								<li><input type="text" class="searchInput" /></li>
-								<li class="web"><a href="#"><img src="../images/btn/btn_search.gif" alt="검색" /></a></li>
-								<li class="mobile"><a href="#"><img src="../images/btn/btn_search_m.gif" alt="검색" /></a></li>
-							</ul>
-						</div>
-					</div>
-					<!-- //포토 구매후기 -->
-
-
 				</div>
 			</div>
 			<!-- //contents -->
+
 
 		</div>
 	</div>

@@ -6,4 +6,8 @@ public interface MemberService {
 
 	MemberDto login(MemberDto mdto);
 
+	String sendEmail(String email);
+
+	String sendEmail2(String email);
+
 }

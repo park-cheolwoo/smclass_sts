@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.java.dto.MemberDto;
 import com.java.service.MemberService;
@@ -41,4 +42,21 @@ public class MemberController {
 		}
 	}
 
+	@GetMapping("/member/step01")
+	public String step01() {
+		return "member/step01";
+	}
+	
+	@ResponseBody
+	@PostMapping("/member/sendEmail")
+	public String sendEmail(String email) {
+		System.out.println("sendEmail : "+email);
+		String pwcode = memberService.sendEmail2(email);
+				
+		return pwcode;
+	}
+	
+	
+	
+	
 }
