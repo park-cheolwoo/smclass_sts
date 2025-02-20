@@ -11,6 +11,9 @@
   <link rel="stylesheet" href="/css/style.css">
   <link rel="stylesheet" href="/css/write.css">
   <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <link href="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/summernote@0.9.0/dist/summernote-lite.min.js"></script>
   <script>
   	const wbtn = () => {
   		if($(".id").val().length < 1){
@@ -33,6 +36,32 @@
  	   		document.getElementById("preview").src = "";
  	   }
     }
+  	
+  	$(function(){
+  		$("#summernote").summernote({  		 	
+  		  	placeholder: '최대 2048자까지 쓸 수 있습니다', //placeholder 설정
+  		  	tabsize : 1,
+ 			height: 300,                // 에디터 높이
+  		  	minHeight: 400,          // 에디터 최소 높이
+  		  	maxHeight: 700,         // 에디터 최대 높이
+  		  	focus: true,                 // 에디터 로딩후 포커스를 맞출지 여부
+  		  	lang: "ko-KR",         // 한글 설정
+			toolbar: [
+			    // [groupName, [list of button]]
+			    ['fontname', ['fontname']],
+			    ['fontsize', ['fontsize']],
+			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+			    ['color', ['forecolor','color']],
+			    ['table', ['table']],
+			    ['para', ['ul', 'ol', 'paragraph']],
+			    ['height', ['height']],
+			    ['insert',['picture','link','video']],
+			    ['view', ['fullscreen', 'help']]
+			  ],
+			fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+  		});
+  	})
    </script>
 </head>
 <body>
@@ -61,7 +90,7 @@
         <tr>
           <th>내용</th>
           <td>
-            <textarea name="bcontent" cols="50" rows="10"></textarea>
+            <textarea id="summernote" name="bcontent" cols="50" rows="10"></textarea>
           </td>
         </tr>
         <tr>
