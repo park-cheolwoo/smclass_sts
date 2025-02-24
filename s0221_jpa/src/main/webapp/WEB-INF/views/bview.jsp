@@ -14,7 +14,7 @@
 		</style>
 	</head>
 	<body>
-	  <h2>게시판리스트</h2>
+	  <h2>게시판 뷰페이지</h2>
 	  <table>
 	    <colgroup>
 	      <col width="10%">
@@ -30,16 +30,14 @@
 	      <th>작성일</th>
 	      <th>조회수</th>
 	    </tr>
-	    <c:forEach items="${list}" var="bDto">
 	    <tr>
-	      <td>${bDto.bno }</td>
-	      <td><a href="/bview?bno=${bDto.bno }">${bDto.btitle }</a></td>
-	      <td>${bDto.memberDto.id }</td>
+	      <td>${bdto.bno }</td>
+	      <td><a href="/board/bview?bno=${bdto.bno }">${bdto.btitle }</a></td>
+	      <td>${bdto.memberDto.id }</td>
 	      <!-- boardDto 안에 memberDto를 넣었음. 이름 주의 -->
-	      <td>${bDto.bdate }</td>
-	      <td>${bDto.bhit }</td>
+	      <td>${bdto.bdate }</td>
+	      <td>${bdto.bhit }</td>
 	    </tr>
-	    </c:forEach>
 	  </table>
 	 
 	   <div><a href="/">메인페이지 이동</a></div>

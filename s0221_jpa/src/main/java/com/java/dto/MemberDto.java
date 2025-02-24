@@ -38,6 +38,6 @@ public class MemberDto {
 	private String gender;
 	@Column(length=100)
 	private String hobby;
-	@CreationTimestamp
+	@CreationTimestamp //자동시간 입력
 	private Timestamp mdate;
 }
