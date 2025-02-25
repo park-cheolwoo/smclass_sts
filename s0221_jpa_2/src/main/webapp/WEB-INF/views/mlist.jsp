@@ -5,7 +5,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<title>게시판리스트</title>
+		<title>회원리스트</title>
 		<style>
 		  h2{text-align: center;}
 		  table,th,td{border:1px solid black; border-collapse: collapse;}
@@ -14,29 +14,37 @@
 		</style>
 	</head>
 	<body>
-	  <h2>게시판뷰페이지</h2>
+	  <h2>회원리스트</h2>
 	  <table>
 	    <colgroup>
-	      <col width="10%">
-	      <col width="*">
+	      <col width="15%">
+	      <col width="15%">
 	      <col width="15%">
 	      <col width="15%">
 	      <col width="10%">
+	      <col width="15%">
+	      <col width="15%">
 	    </colgroup>
 	    <tr>
-	      <th>번호</th>
-	      <th>제목</th>
-	      <th>작성자</th>
-	      <th>작성일</th>
-	      <th>조회수</th>
+	      <th>아이디</th>
+	      <th>패스워드</th>
+	      <th>이름</th>
+	      <th>전화번호</th>
+	      <th>성별</th>
+	      <th>취미</th>
+	      <th>가입일</th>
 	    </tr>
+	    <c:forEach items="${list}" var="mdto">
 	      <tr>
-	        <td>${bdto.bno }</td>
-	        <td><a href="/">${bdto.btitle }</a></td>
-	        <td>${bdto.memberDto.id }</td>
-	        <td>${bdto.bdate }</td>
-	        <td>${bdto.bhit }</td>
+	        <td><a href="/memInfo?id=${mdto.id }">${mdto.id }</a></td>
+	        <td>${mdto.pw }</td>
+	        <td>${mdto.name }</td>
+	        <td>${mdto.phone }</td>
+	        <td>${mdto.gender }</td>
+	        <td>${mdto.hobby }</td>
+	        <td>${mdto.mdate }</td>
 	      </tr>
+	    </c:forEach>
 	    
 	  </table>
 	  

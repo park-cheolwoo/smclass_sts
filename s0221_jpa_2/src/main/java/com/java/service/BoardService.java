@@ -14,7 +14,5 @@ public interface BoardService {
 
 	//게시글가져오기
 	BoardDto findById(int bno);
-	
-	List<BoardDto> findByBtitleContaining(String search);
 
 }

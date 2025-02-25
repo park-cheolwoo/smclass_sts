@@ -41,7 +41,7 @@ public class BoardDto {
 	@Lob //대용량 데이터
 	private String bcontent;
 	
-	@ManyToOne(fetch = FetchType.EAGER) //EAGER, LAZY
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id") //Fk키가 id라고 설정
 	private MemberDto memberDto; //memberdto테이블 primary key - 객체타입 입력불가
 //	private String id; //db에서도 id만 저장

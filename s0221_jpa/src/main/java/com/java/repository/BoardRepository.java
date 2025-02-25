@@ -22,4 +22,7 @@ public interface BoardRepository extends JpaRepository<BoardDto, Integer> {
 	@Query(value="select * from boardDto where id=? order by bgroup desc, bstep asc",
 			nativeQuery = true)
 	List<BoardDto> findAll();
+
+	@Query(value = "select * from boarddto where btitle like %?% ", nativeQuery=true)
+	List<BoardDto> findByBtitleContaining(String search);
 }
