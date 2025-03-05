@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 	<div id="footerWrap">
 		<div id="footer">
 			<div id="fnb">
@@ -27,10 +26,14 @@
 						<li class="copy">COPYRIGHT © 2014 JARDIN <span>ALL RIGHTS RESERVED.</span></li>
 					</ul>
 				</address>
+
 				<div id="inicis"><img src="../images/ico/ico_inicis.png" alt="이니시스 결제시스템" /></div>
 			</div>
 		</div>
 	</div>
+
+
+
 </div>
 </div>
 </body>

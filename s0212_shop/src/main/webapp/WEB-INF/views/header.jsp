@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
@@ -14,7 +14,6 @@
 <link rel="stylesheet" type="text/css" href="../css/reset.css?v=Y" />
 <link rel="stylesheet" type="text/css" href="../css/layout.css?v=Y" />
 <link rel="stylesheet" type="text/css" href="../css/content.css?v=Y" />
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/top_navi.js"></script>
 <script type="text/javascript" src="../js/main.js"></script>
@@ -22,6 +21,7 @@
 <script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="../js/idangerous.swiper-2.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery.anchor.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="../js/html5.js"></script>
 <script type="text/javascript" src="../js/respond.min.js"></script>
@@ -36,12 +36,14 @@ $(document).ready(function() {
 		loop: true,
 		autoplay:5000
 	});
+
 	var mySwiper2 = new Swiper('#bestseller',{
 		paginationClickable: true,
 		slidesPerView: 3,
 		loop: true,
 		autoplay:3000
 	});
+
 	var mySwiper3 = new Swiper('#mainSale',{
 		paginationClickable: true,
 		slidesPerView: 5,
@@ -52,6 +54,7 @@ $(document).ready(function() {
 	$(window).bind('resize', function() {
 		rollwidth();	
 	});
+
 	function rollwidth(){
 		var winWidth = $(window).width();
 		if(winWidth < 768){
@@ -70,6 +73,7 @@ $(document).ready(function() {
 		e.preventDefault()
 		mySwiper2.swipeNext()
 	});
+
 	$('.saleLeft').bind('click', function(e){
 		e.preventDefault()
 		mySwiper3.swipePrev()
@@ -78,17 +82,36 @@ $(document).ready(function() {
 		e.preventDefault()
 		mySwiper3.swipeNext()
 	});
+
 	rollwidth();
+
+
 	var myWish = new Swiper('#wishList',{
 		paginationClickable: true,
 		slidesPerView: 3,
 		loop: true,
 		autoplay:3000
 	});
+
+
 });
+
+
+//로그인 여부
+if("${param.loginChk}"=="1"){
+	alert("로그인이 되었습니다.");
+}
+//로그아웃 여부
+if("${param.loginChk}"=="0"){
+	alert("로그아웃 되었습니다.");
+}
+
 </script>
 </head>
 <body>
+
+
+
 <!--익스레이어팝업-->
 <div id="ieUser" style="display:none">
 	<div class="iewrap">	
@@ -107,33 +130,40 @@ $(document).ready(function() {
 <!--//익스레이어팝업-->
 <!--IE 6,7,8 사용자에게 브라우저 업데이터 설명 Div 관련 스크립트-->
  <script type="text/javascript">
+
      var settimediv = 200000; //지속시간(1000= 1초)
      var msietimer;
+
      $(document).ready(function () {
          msiecheck();
      });
+
      var msiecheck = function () {
          var browser = navigator.userAgent.toLowerCase();
          if (browser.indexOf('msie 6') != -1 ||
                 browser.indexOf('msie 7') != -1 ||
 				 browser.indexOf('msie 8') != -1) {
-             msieshow();			
+             msieshow();			 
          }
          else {
              msiehide();
          }
      }
+
      var msieshow = function () {
         $("#ieUser").show();
         msietimer = setTimeout("msiehide()", settimediv);
      }
+
      var msiehide = function () {
 		$("#ieUser").hide();
         clearTimeout(msietimer);
      }
 </script>
+
 <div id="allwrap">
 <div id="wrap">
+
 	<div id="header">
 		
 		<div id="snbBox">
@@ -149,11 +179,18 @@ $(document).ready(function() {
 			</div>
 			<div id="snb">
 				<ul>
-					<li><a href="/member/login">LOGIN</a></li>
-					<li><a href="/member/step01">JOIN</a></li>
+					<c:if test="${session_id == null }">
+						<li><a href="/member/login">LOGIN</a></li>
+						<li><a href="/member/step01">JOIN</a></li>
+					</c:if>
+					<c:if test="${session_id != null }">
+						<li>${session_id} 님</li>
+						<li><a href="/member/logout">LOGOUT</a></li>
+					</c:if>
 					<li><a href="/mypage/ordercheck">MY PAGE</a></li>
 					<li><a href="#">CART</a></li>
 				</ul>
+
 				<div id="search">
 					<input type="text" class="searchType" />
 					<input type="image" src="../images/btn/btn_main_search.gif" width="23" height="20" alt="검색하기" />
@@ -161,6 +198,8 @@ $(document).ready(function() {
 			</div>
 		</div>
 	</div>
+
+
 	<!-- GNB -->
 	<div id="gnb">
 		
@@ -222,6 +261,7 @@ $(document).ready(function() {
 				<li class="t2"><a href="#" id="topNavi8">대량구매</a></li>
 			</ul>
 		</div>
+
 		<script type="text/javascript">initTopMenu();</script>
 	</div>
 	<!-- //GNB -->

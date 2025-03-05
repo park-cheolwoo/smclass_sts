@@ -2,27 +2,27 @@ package com.java.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
 
 import com.java.dto.BoardDto;
 
-@Repository
-public interface BoardRepository extends JpaRepository<BoardDto, Integer> {
+public interface BoardRepository extends JpaRepository<BoardDto, Integer>{
 
-	// "aaa" 필터링
-//	@Query(value="select * from boardDto where id=? order by bgroup desc, bstep asc",
-//			nativeQuery = true)
-//	List<BoardDto> findAll("aaa");
-	// 로그인
-//	@Query(value="select * from memberDto where id=? and pw=?",
-//			nativeQuery = true)
-//	Optional<MemberDto> findIdAndPw(String id, String pw); //Optional : 데이터가 1개인 경우
-	@Query(value="select * from boardDto where id=? order by bgroup desc, bstep asc",
-			nativeQuery = true)
-	List<BoardDto> findAll();
+	//select * from boarddto where btitle like '%search%'
+//	@Query(value = "select * from boarddto where btitle like %:search% or bcontent like %:search%",
+//		nativeQuery = true)
+//	List<BoardDto> findByBtitleOrBcontentContaining(String search);
+	List<BoardDto> findByBtitleContains(String search);
 
-	@Query(value = "select * from boarddto where btitle like %?% ", nativeQuery=true)
-	List<BoardDto> findByBtitleContaining(String search);
+	
+	//Memberdto 로그인부분 쿼리
+//	@Query(value = "select * from memberdto where id=? and pw=?",
+//			nativeQuery = true)
+//	Optional<MemberDto> findByIdAndPw(String id,String pw);
+	
+//	@Query(value = "select * from boarddto order by bgroup desc, bstep asc",
+//			nativeQuery = true)
+//	Page<BoardDto> findAll(pageable);
 }

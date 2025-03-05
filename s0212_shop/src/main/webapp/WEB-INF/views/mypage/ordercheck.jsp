@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file='../header.jsp' %>
-	
-
+<%@ include file="../header.jsp" %>
 	<!-- container -->
 	<div id="container">
 
@@ -109,24 +107,29 @@
 								<th scope="col">주문상태</th>
 							</thead>
 							<tbody>
-								<c:forEach items="${list }" var="mbdto">
-									<tr>
-										<td>
-											<p class="day">${mbdto.memberDto.mdate }</p>
-											<p class="orderNum">${mbdto.boardDto.bno }</p>
-										</td>
-										<td class="left">
-											${mbdto.boardDto.btitle }
-										</td>
-										<td class="tnone">${mbdto.memberDto.phone } 원</td>
-										<td class="tnone">${mbdto.boardDto.bhit } 개</td>
-										<td>
-											<span class="orange">배송중</span>									
-										</td>
-									</tr>
-								</c:forEach>
-								
-								
+							    <c:forEach items="${list}" var="mbdto">
+							      <tr>
+									<td>
+										<p class="day">${mbdto.memberDto.mdate}</p>
+										<p class="orderNum">${mbdto.boardDto.bno }</p>
+									</td>
+									<td class="left">
+										${mbdto.boardDto.btitle }
+									</td>
+									<td class="tnone">${mbdto.memberDto.phone } 원</td>
+									<td class="tnone">${mbdto.boardDto.bhit }개</td>
+									<td>
+										<span class="heavygray">배송완료</span>
+										<ul class="state">	
+											<li class="r5"><a href="return.html" class="obtnMini iw40">교환</a></li>
+											<li><a href="return.html" class="nbtnMini iw40">반품</a></li>
+											<li><a href="#" class="reviewbtn">리뷰작성</a></li>
+											<li><a href="#" class="decidebtn">구매확정</a></li>
+										</ul>										
+									</td>
+								</tr>
+							    </c:forEach>
+							
 							
 								<tr>
 									<td>
@@ -253,6 +256,8 @@
 						
 						<div class="productList">
 							<ul>
+							    
+							    
 								<!-- Product Yes -->
 								<li>
 									<span class="chk"><input type="checkbox" /></span>
@@ -410,4 +415,5 @@ $(function(){
 		</div>
 	</div>
 	<!-- //container -->
-<%@ include file='../footer.jsp' %>
+
+<%@ include file="../footer.jsp" %>

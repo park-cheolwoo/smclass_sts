@@ -1,7 +1,6 @@
 package com.java.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,10 +13,9 @@ public class MemberServiceImpl implements MemberService {
 
 	@Autowired MemberRepository memberRepository;
 	
-	@Override
+	@Override //회원가입
 	public void save(MemberDto mdto) {
-		memberRepository.save(mdto);
-		
+		memberRepository.save(mdto); //자동으로 저장, mapper.xml
 	}
 
 	@Override
@@ -26,26 +24,29 @@ public class MemberServiceImpl implements MemberService {
 		return list;
 	}
 
-	// select * from memberdto where id = #{id}
-	// findByIdAndPw -> select * from memberdto where id=#{id} and pw=#{pw}
 	@Override
 	public MemberDto findById(String id) {
-		// findById -> 검색이 없을 경우 에러처리를 해야함
+		//findById -> 검색이 없을 경우 에러처리를 해야 함.
+		// select * from memberdto where id = #{id}
+		// findByIdAndPw
+		// select * from memberdto where id= #{id} and pw=#{pw}
 		MemberDto memberDto = memberRepository.findById(id)
-				.orElseThrow(()->{return new IllegalArgumentException("데이터 처리시 에러");});
+				.orElseThrow(()->{
+					return new IllegalArgumentException("데이터 처리시 에러!!");
+				});
 		return memberDto;
 	}
 
 	@Override
-	public void delete(String id) {
+	public void deleteById(String id) {
 		memberRepository.deleteById(id);
 		
 	}
 
-	@Override
+	@Override //로그인
 	public MemberDto findByIdAndPw(String id, String pw) {
-		MemberDto memberdto = memberRepository.findByIdAndPw(id,pw);
-		return memberdto;
+		MemberDto memberDto = memberRepository.findByIdAndPw(id,pw);
+		return memberDto;
 	}
 
 }

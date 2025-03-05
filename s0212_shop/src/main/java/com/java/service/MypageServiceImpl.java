@@ -11,13 +11,12 @@ import com.java.dto.MemberBoardDto;
 @Service
 public class MypageServiceImpl implements MypageService {
 
-	@Autowired MemberBoardMapper memberboardMapper;
+	@Autowired MemberBoardMapper memberBoardMapper;
 	
 	@Override
 	public ArrayList<MemberBoardDto> selectAll() {
-		ArrayList<MemberBoardDto> list = memberboardMapper.selectAll(); 
+		ArrayList<MemberBoardDto> list = memberBoardMapper.selectAll();
 		return list;
 	}
 
-	
 }

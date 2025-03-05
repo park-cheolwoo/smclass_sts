@@ -1,6 +1,7 @@
 package com.java.dto;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -41,7 +42,7 @@ public class BoardDto {
 	@Lob //대용량 데이터
 	private String bcontent;
 	
-	@ManyToOne(fetch = FetchType.EAGER) //EAGER, LAZY
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name="id") //Fk키가 id라고 설정
 	private MemberDto memberDto; //memberdto테이블 primary key - 객체타입 입력불가
 //	private String id; //db에서도 id만 저장
@@ -59,6 +60,10 @@ public class BoardDto {
 	@Column(nullable = true,length=100)
 	private String bfile;
 	
-	
+	//CboardDto의 boardDto 컬럼을 넣어줌 (BoardDto boardDto 이름을 가져옴)
+	//mappedBy연관관계 주인이 아님. - FK를 생성하지 마라.
+	// 테이블을 조인해서 가져오는 것만 하면 됨.
+	@OneToMany(mappedBy = "boardDto",fetch = FetchType.EAGER) 
+	private List<CboardDto> clist;
 
 }

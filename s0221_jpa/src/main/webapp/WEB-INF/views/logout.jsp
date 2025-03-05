@@ -4,13 +4,16 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-    	<title>logout</title>
-    	<script>
-    		if("${chckLogin}" == "0"){
-    			alert("로그아웃이 되었습니다.");
-    			location.href="/";
-    		} else{location.href="/";}
-    	</script>
+		<title>logout</title>
+		<script>
+		  if("${chkLogin}"=="0"){
+			  alert("로그아웃이 되었습니다.");
+			  location.href = "/";
+		  }else{
+			  location.href = "/";
+		  }
+		
+		</script>
 	</head>
 	<body>
 	

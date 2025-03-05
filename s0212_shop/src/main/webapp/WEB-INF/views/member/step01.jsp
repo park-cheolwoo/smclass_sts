@@ -1,9 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %> 
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<%@ include file='../header.jsp' %>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<%@ include file="../header.jsp" %>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<!-- container -->
 	<div id="container">
 
@@ -66,14 +64,8 @@
 							<li>회원님의 개인 정보 보호를 위해 실명확인을 실시하고 있습니다.</li>
 						</ul>
 					</div>
-
-
-					<!-- Btn Area -->
-					<div class="btnAreaCenter">
-						<a href="#" class="gbtn">휴대폰인증</a></li>
-					</div>
-					<!-- //Btn Area -->
 					
+					<!-- table추가 -->
 					<div class="checkDivTab">
 						<table summary="분류, 구매여부, 평가, 제목, 상세 내용 순으로 상품평을 작성 하실수 있습니다." class="checkTable" border="1" cellspacing="0">
 							<caption>상품평 작성</caption>
@@ -83,77 +75,96 @@
 							</colgroup>
 							<tbody>
 								<tr>
-									<th scope="row"><span>이메일 주소 입력</span></th>
-									<td><input type="email" name="email" class="wlong" /></td>
+									<th scope="row"><span>이메일주소 입력</span></th>
+									<td>
+										<input type="text" class="wlong" name="email" />
+									</td>
 								</tr>
 								<tr>
-									<th scope="row"><span>인증번호</span></th>
+									<th scope="row"><span>인증코드</span></th>
 									<td>
-										<input type="email" class="wlong" id="pwCode"/>
+										<input type="text" id="pwCode" class="wlong" />
 									</td>
-								</tr>							
+								</tr>
+															
 							</tbody>
 						</table>
 					</div>
+
+					<script>
+					  $(function(){
+						 
+						 $(".nbtnbig").click(()=>{
+							let email = $('input[name="email"]');
+							if(email.val().length<1){
+								alert("이메일을 입력하셔야 합니다.");
+								return;
+							}
+							alert("인증코드를 이메일로 발송했습니다."); 
+							alert(email.val());
+							//ajax 이메일발송
+							$.ajax({
+								url:"/member/sendEmail2",
+								type:"post",
+								data:{"email":email.val()},
+								success:function(data){
+									alert("성공");
+									console.log(data);
+									
+									
+								},
+								error:function(){
+									alert("이메일 발송 실패");
+								}
+							});//ajax
+						 });//emailbtn 
+						 
+						 
+						 $(".sbtnMini").click(()=>{
+							//alert("인증코드 : ${pwCode}"); 
+							$.ajax({
+								url:"/member/pwCodeCheck",
+								type:"post",
+								data:{"pwCode":$("#pwCode").val()},
+								success:function(data){
+									console.log(data);
+									if(data == "1"){
+										alert("인증코드 완료.\n다음단계로 이동합니다.");
+										//이동
+										location.href="/member/step02";
+									}else{
+										alert("인증코드 실패. 인증코드를 다시 입력하세요.");
+										$("#pwCode").val("");
+										$("#pwCode").focus();
+									}
+									
+									
+								},
+								error:function(){
+									alert("이메일 발송 실패");
+								}
+							});//ajax
+							
+							
+							
+						 });
+						 
+						 
+					  });//jquery
+					</script>
 					
 					<!-- Btn Area -->
 					<div class="btnArea">
 						<div class="bCenter">
 							<ul>																
-								<li><a class="nbtnbig">인증번호 발송</a></li>
-								<li><a class="sbtnMini">다음 단계로 이동</a></li>
+								<li><a class="nbtnbig">인증코드 발송</a></li>
+								<li><a class="sbtnMini">다음으로</a></li>
 							</ul>
 						</div>
 					</div>
-					<script>
-					$(function(){
-						
-						$(".nbtnbig").click(()=>{
-							let email = $('input[name="email"]');
-							if(email.val().length<1){
-								alert("이메일을 입력하셔야 합니다.");
-								email.focus();
-								return false;
-							}
-							alert("인증코드를 이메일로 발송했습니다.");
-							$.ajax({
-								url : "/member/sendEmail",
-								type : "post",
-								data : {"email":email.val()},
-								success:function(data){
-									alert("성공");
-									console.log(data);
-								},
-								error: function(){
-									alert("이메일 발송 실패");
-								}
-							});
-						});
-						
-						$(".sbtnMini").click(() => {
-							alert("인증 코드 : "+$("#pwCode").val());
-							$.ajax({
-								url : "/member/pwCodeCheck",
-								type : "post",
-								data : {"pwCode":$("#pwCode").val()},
-								success:function(data){
-									alert("성공");
-									console.log(data);
-									if(data == 1){
-										alert("인증코드 완료");
-										location.href="/member/step02";
-									}else{
-										alert("인증코드 실패. 인증코드를 다시 입력하세요.");		
-									}
-								},
-								error: function(){
-									alert("이메일 발송 실패");
-								}
-							});
-						})
-						
-					});
-					</script>
+					<!-- //Btn Area -->
+
+
 				</div>
 			</div>
 			<!-- //contents -->
@@ -162,5 +173,6 @@
 		</div>
 	</div>
 	<!-- //container -->
+<%@ include file="../footer.jsp" %>
 
-<%@ include file='../footer.jsp' %>
+

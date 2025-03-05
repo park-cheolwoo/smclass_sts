@@ -14,7 +14,6 @@
 <link rel="stylesheet" type="text/css" href="../css/reset.css?v=Y" />
 <link rel="stylesheet" type="text/css" href="../css/layout.css?v=Y" />
 <link rel="stylesheet" type="text/css" href="../css/content.css?v=Y" />
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script type="text/javascript" src="../js/jquery.min.js"></script>
 <script type="text/javascript" src="../js/top_navi.js"></script>
 <script type="text/javascript" src="../js/left_navi.js"></script>
@@ -23,6 +22,7 @@
 <script type="text/javascript" src="../js/jquery.easing.1.3.js"></script>
 <script type="text/javascript" src="../js/idangerous.swiper-2.1.min.js"></script>
 <script type="text/javascript" src="../js/jquery.anchor.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="../js/html5.js"></script>
 <script type="text/javascript" src="../js/respond.min.js"></script>
@@ -220,29 +220,34 @@ $(document).ready(function() {
 							<li class="last"><a href="#" class="on">상품평</a></li>
 						</ul>						
 					</div>
-					
-					<script>
-					$(function(){
-						$.ajax({
-							url : "/community/comment_api",
-							type : "post",
-							data : {},
-							dataType:"json",
-							success : function(data){
-								console.log(data);
-								let itemArr = data.body.items;
-								for(var i=0;i<4;i++){
-								console.log(itemArr[i].item.title.org);
-								}
-							},
-							error:function(){
-								alert("api 호출 실패");
-							}
-						});
-					});
-					
-					</script>
 
+                    <script>
+                      $(function(){
+                    	  $.ajax({
+                    		url:"/community/api_comment",
+  							type:"post",
+  							data:{},
+  							dataType:"json",
+  							success:function(data){
+  								alert("성공");
+  								console.log(data);
+  								let apiArr = data.body.items;
+  								for(let i=0;i<apiArr.length;i++){
+	  								console.log(apiArr[i].item.title.org);
+	  								console.log(apiArr[i].item.publisher.org);
+  								}
+  							},
+  							error:function(){
+  								alert("api호출 실패");
+  							}
+                    		  
+                    		  
+                    		  
+                    	  });
+                      });//jquery
+                    
+                    </script>
+                    
 					<!-- 상품평 -->
 					<div class="orderDiv">
 					<table summary="상품평 게시판으로 NO, 제품명, 제목, 작성자, 평점/등록일, 조회수 순으로 조회 하실수 있습니다." class="orderTable" border="1" cellspacing="0">
@@ -263,8 +268,8 @@ $(document).ready(function() {
 							<th scope="col" class="tnone">평점/등록일</th>
 							<th scope="col" class="tnone">조회수</th>
 						</thead>
-						
 						<tbody>
+						    <!-- list -->
 							<tr>
 								<td class="tnone">1</td>
 								<td>카페모리</td>
@@ -286,14 +291,11 @@ $(document).ready(function() {
 								</td>
 								<td class="right tnone">9999</td>
 							</tr>
+						    <!-- list -->
+
+							
 						</tbody>
 					</table>
-					
-					
-					
-					
-					
-					
 					</div>
 
 					<div class="btnAreaList">

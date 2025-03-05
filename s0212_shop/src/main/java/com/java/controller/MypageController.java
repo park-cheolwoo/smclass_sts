@@ -14,17 +14,18 @@ import com.java.service.MypageService;
 public class MypageController {
 	
 	@Autowired MypageService mypageService;
-
+	
 	@GetMapping("/mypage/ordercheck")
 	public String ordercheck(Model model) {
 		ArrayList<MemberBoardDto> list = mypageService.selectAll();
-		System.out.println(list.size());
-		System.out.println("controller : "+list.get(0).getMemberDto().getName());
-		System.out.println("controller : "+list.get(0).getMemberDto().getPhone());
-		System.out.println("controller : "+list.get(0).getBoardDto().getBtitle());
-		System.out.println("controller : "+list.get(0).getBoardDto().getBgroup());
+		
+		System.out.println("controller name : "+list.get(0).getMemberDto().getName());
+		System.out.println("controller phone : "+list.get(0).getMemberDto().getPhone());
+		System.out.println("controller btitle : "+list.get(0).getBoardDto().getBtitle());
+		System.out.println("controller bgroup : "+list.get(0).getBoardDto().getBgroup());
 		model.addAttribute("list",list);
+		
 		return "mypage/ordercheck";
 	}
-	
+
 }
